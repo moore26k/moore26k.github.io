@@ -62,3 +62,149 @@
 </body>
 
 </html>
+
+
+<html>
+<body>      
+   
+    <div style="margin-left: auto; margin-right: auto; margin-top: 40px;
+    padding: 20px; width: 500px; font-size: 16px; font-family:'Segoe UI', sans-serif;">
+    Mina-Bot
+   
+   <div style=" margin-top:6px; padding: 20px; background-color: #8cb5a5;
+   border: 4px solid #a590dd; border-radius: 25px;">
+
+    <form name="chatForm">
+        <p id="botSays">What is your name ? </p>
+        <br>         
+        <input type="text" name="userInput" >
+        <input type="button" value="Send" onClick="displayFeedback(this.form)">
+
+    </form>
+   </div>
+   </div>  
+
+<script>
+
+var counter=0;
+var totalQuestions=2;
+
+var userName;
+
+    function displayFeedback(form) {
+        counter++;
+
+        var feedbackText="";
+        var newQuestionText="";
+
+        var userInput= form.userInput.value;
+
+        if (counter==1) {        
+            userName= userInput;
+            feedbackText="Hello, "+ userName+" ! " +"<br>Nice to meet you."+
+            " I am Kit, a first year at Mount Holyoke College.";
+
+            newQuestionText="Do you also attend Mount Holyoke College ?";              
+        }
+
+        if (counter==2) {        
+            feedbackText="Thanks for sharing."; 
+            newQuestionText="Do you like Mount Holyoke?";             
+        }
+
+        if (counter==3){
+            feedbackText="That's great!"
+            newQuestionText="";
+        }
+
+        //update the feedback and clear the input box
+        document.getElementById("botSays").innerHTML = feedbackText+ "<br><br>"+newQuestionText;   
+        form.userInput.value=""; 
+    }
+
+</script>
+</body>
+</html>
+
+
+
+<html>
+<body>      
+<script>
+
+var counter=0;
+var myMajor="art history";
+var totalQuestions=5;
+var myFavArtists =["Billy Joel", "Indigo Girls", "Elton John","Paul Simon"];
+
+//create a list of the majors you are/ were interested in
+var majorInterestedList=["education", "psychology", "english", "computer science" ];
+
+var userName;
+
+    function displayFeedback(form) {
+
+        counter++;
+
+        var feedbackText="";
+        var newQuestionText="";
+
+        var userInput= form.userInput.value;
+
+        if (counter==1) {        
+            userName= userInput;
+            feedbackText="Hello, "+ userName+" ! " +"<br>Nice to meet you."+
+            " I am Kit, a freshman at Mount Holyoke College.";
+
+            newQuestionText="Do you also attend Mount Holyoke College ?";              
+        }
+
+        if (counter==2) {        
+            feedbackText="Thanks for sharing."; 
+            newQuestionText="What is your major ?";              
+        }
+
+        if (counter==3) {
+
+            //we are converting the userinput into lowercase for comparison     
+            if (userInput.toLowerCase()== myMajor) feedbackText="Great! I am also majoring in "+ userInput+"."; 
+            
+            else {
+                feedbackText="I guess you must find "+userInput+" very interesting."+" I am majoring in "+myMajor;
+                
+                //check if user's major is one the majors in your majorInterestedList 
+                for (let i = 0; i < majorInterestedList.length; i++) {      
+                    if (userInput.toLowerCase() == majorInterestedList[i]) {
+                        feedbackText=userInput+ " was one of the majors I was interested to pursue."+
+                        " I am now majoring in "+myMajor+".";
+                    }    
+                }
+        }
+
+        newQuestionText="Who's your favorite artists"; 
+        }
+
+        if (counter==4) {     
+            if (userInput== myFavArtists) feedbackText="That's also my favorite artist! ";  
+            else if (userInput< myFavArtists) feedbackText="Nice. I should try that artist out!"; 
+            else feedbackText="Thanks for sharing.";  
+
+            newQuestionText = "";
+        }
+        
+        //if you have reached the last question
+        if (counter>=totalQuestions ) {
+            feedbackText=feedbackText+"<br><br>It was nice talking to you, "+userName+"."+
+            "<br>I hope you have a great day!";           
+        }
+
+            
+        //update the feedback and clear the input box
+        document.getElementById("botSays").innerHTML = feedbackText+ "<br><br>"+newQuestionText;   
+        form.userInput.value=""; 
+    }
+
+</script>
+</body>
+</html>
+
